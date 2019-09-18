@@ -33,9 +33,6 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
     private void initView() {
         viewpager = findViewById(R.id.guide_viewpager);
 
-        //
-
-
         mViewList = new ArrayList<>();
         LayoutInflater inflater = LayoutInflater.from(this);
         mViewList.add(inflater.inflate(R.layout.guide_one_layout,null));

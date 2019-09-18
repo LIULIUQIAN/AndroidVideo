@@ -26,11 +26,11 @@ public class HomeActivity extends BaseActivity {
         setActionBarIcon(R.drawable.ic_home_icon);
         setTitle("首页");
 
-//        mDrawerLayout = bindViewId(R.id.drawer_layout);
-//        mNavigationView = bindViewId(R.id.navigation_view);
-//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.drawer_open,R.string.drawer_close);
-//        mActionBarDrawerToggle.syncState();
-//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+        mDrawerLayout = bindViewId(R.id.drawer_layout);
+        mNavigationView = bindViewId(R.id.navigation_view);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.drawer_open,R.string.drawer_close);
+        mActionBarDrawerToggle.syncState();
+        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
     }
 
     @Override
