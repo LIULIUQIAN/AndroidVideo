@@ -11,7 +11,7 @@
 
         <item android:id="@+id/navigation_item_blog"
             android:icon="@drawable/iconfont_blog"
-            android:title="视频"/>
+            android:title="播客"/>
 
         <item android:id="@+id/navigation_item_about"
             android:icon="@drawable/iconfont_about"
