@@ -1,11 +1,13 @@
 package com.example.androidvideo.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.androidvideo.R;
 import com.example.androidvideo.base.BaseFragment;
+import com.example.androidvideo.detail.DetailListActivity;
 import com.example.androidvideo.model.Channel;
 import com.hejunlin.superindicatorlibray.CircleIndicator;
 import com.hejunlin.superindicatorlibray.LoopViewPager;
@@ -39,6 +42,31 @@ public class HomeFragment extends BaseFragment {
         mGridView = bindViewId(R.id.gv_channel);
         mGridView.setAdapter(new ChannelAdapter());
 
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                switch (i){
+                    case 6:
+                        System.out.println("6");
+                        break;
+                    case 7:
+                        System.out.println("7");
+                        break;
+                    case 8:
+                        System.out.println("8");
+                        break;
+
+                        default:
+                            Intent intent = new Intent(getActivity(), DetailListActivity.class);
+                            intent.putExtra(DetailListActivity.CHANNEL_ID,i+1);
+                            startActivity(intent);
+
+                            break;
+
+                }
+            }
+        });
     }
 
     @Override
