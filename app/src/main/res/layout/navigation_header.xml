@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_navigation_header"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,12 +10,20 @@
     android:padding="15dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/header"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#fff"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="测试名字"
+        android:text="一个很吊的安卓开发工程师"
         android:textColor="#ffffff"
         android:textSize="18dp"/>
 

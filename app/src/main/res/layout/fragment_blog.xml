@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.BlogFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+  <ProgressBar
+      android:id="@+id/pb_progress"
+      android:layout_width="match_parent"
+      android:layout_height="5dp"
+      android:indeterminate="false"
+      style="?android:attr/progressBarStyleHorizontal"
+      android:max="100"
+      android:indeterminateDrawable="@drawable/progress_bar_drawable"
+      />
+
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3333333" />
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>
