@@ -14,6 +14,16 @@
     <string name="d_name">射雕英雄传</string>
     <string name="e_name">中国式相亲之奶茶大叔遭疯抢</string>
 
+    <string name="channel_series">电视剧</string>
+    <string name="channel_movie">电影</string>
+    <string name="channel_comic">动漫</string>
+    <string name="channel_documentary">纪录片</string>
+    <string name="channel_music">音乐</string>
+    <string name="channel_variety">综艺</string>
+    <string name="channel_live">直播</string>
+    <string name="channel_favorite">收藏</string>
+    <string name="channel_history">历史</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

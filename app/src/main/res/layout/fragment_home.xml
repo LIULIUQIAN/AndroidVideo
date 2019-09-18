@@ -31,6 +31,15 @@
 
     </FrameLayout>
 
+    <GridView
+        android:padding="15dp"
+        android:id="@+id/gv_channel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:verticalSpacing="25dp"
+        android:horizontalSpacing="15dp" />
+
 
 
 </LinearLayout>
