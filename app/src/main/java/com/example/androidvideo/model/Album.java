@@ -23,6 +23,10 @@ public class Album implements Parcelable {
     private String letvStyle;//乐视特殊字段
     private Context context;
 
+    public Album(int siteId) {
+        site =  new Site(siteId);
+    }
+
 
     public String getAlbumId() {
         return albumId;

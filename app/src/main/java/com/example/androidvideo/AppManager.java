@@ -24,6 +24,10 @@ public class AppManager extends Application {
 
     }
 
+    public static OkHttpClient getHttpClient() {
+        return mOkHttpClient;
+    }
+
     public static Gson getmGson() {
         return mGson;
     }
