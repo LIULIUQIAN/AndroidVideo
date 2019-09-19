@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".detail.DetailListFragment">
 
-
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pullloadRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="yyy" />
+        android:scrollbars="none"
+        android:padding="15dp"
+        android:overScrollMode="never"/>
 
 </FrameLayout>

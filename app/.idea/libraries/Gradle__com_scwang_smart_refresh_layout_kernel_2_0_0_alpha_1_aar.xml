@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd954cdee011e78b38e7d45b3e685e0b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd954cdee011e78b38e7d45b3e685e0b/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.scwang.smart/refresh-layout-kernel/2.0.0-alpha-1/2ee09c0fc7d3ca16adcc0aef5c35d406d0fc3772/refresh-layout-kernel-2.0.0-alpha-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

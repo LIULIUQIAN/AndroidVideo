@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.scwang.smart:refresh-drawable-paint:2.0.0-alpha-1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/325b3a8d38fc72bbd9e838158832a139/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/325b3a8d38fc72bbd9e838158832a139/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.scwang.smart/refresh-drawable-paint/2.0.0-alpha-1/d89f1d90407848f495ca24e92abbd5339c07ccff/refresh-drawable-paint-2.0.0-alpha-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

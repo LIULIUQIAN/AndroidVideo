@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.example.androidvideo"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -35,6 +35,13 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     implementation 'com.hejunlin.superindicatorlibray:superindicatorlibray:1.0.3'
+    //上拉加载和刷新
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'
+    implementation  'com.scwang.smart:refresh-footer-classics:2.0.0-alpha-1'    //经典加载
+    //网络请求
+    implementation  ("com.squareup.okhttp3:okhttp:4.2.0")
+//json解析
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 
 }
