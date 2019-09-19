@@ -36,12 +36,19 @@ dependencies {
 
     implementation 'com.hejunlin.superindicatorlibray:superindicatorlibray:1.0.3'
     //上拉加载和刷新
-    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'
-    implementation  'com.scwang.smart:refresh-footer-classics:2.0.0-alpha-1'    //经典加载
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.0-alpha-1'
+    //经典加载
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.0-alpha-1'
+    //经典刷新头
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.0-alpha-1'
     //网络请求
-    implementation  ("com.squareup.okhttp3:okhttp:4.2.0")
+    implementation("com.squareup.okhttp3:okhttp:4.2.0")
 //json解析
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    //图片加载
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
 
 }

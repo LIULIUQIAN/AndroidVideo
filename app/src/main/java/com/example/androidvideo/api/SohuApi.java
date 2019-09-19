@@ -52,7 +52,7 @@ public class SohuApi extends BaseSiteApi{
     private final static String API_VIDEO_PLAY_URL_FORMAT = "http://api.tv.sohu.com/v4/video/info/%s.json?site=1&plat=6&poid=1&api_key=9854b2afa779e1a6bff1962447a09dbd&sver=4.5.1&sysver=4.4.2&partner=47&aid=%s";
     //真实url格式 m3u8
     //http://hot.vrs.sohu.com/ipad3669271_4603585256668_6870592.m3u8?plat=6uid=f5dbc7b40dad477c8516885f6c681c01&pt=5&prod=app&pg=1
-    
+
     public void onGetChannelAlbums(Channel channel, int pageNo, int pageSize, OnGetChannelAlbumListener listener) {
         String url = getChannelAlbumUrl(channel, pageNo, pageSize);
         doGetChannelAlbumsByUrl(url, listener);
