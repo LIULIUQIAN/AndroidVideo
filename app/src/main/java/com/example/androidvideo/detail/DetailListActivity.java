@@ -70,12 +70,12 @@ public class DetailListActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
 
-            return DetailListFragment.newInstance(position+2,mChannelID);
+            return DetailListFragment.newInstance(position+1,mChannelID);
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 2;
         }
 
         @NonNull

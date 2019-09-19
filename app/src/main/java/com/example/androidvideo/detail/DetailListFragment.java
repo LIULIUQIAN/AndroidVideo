@@ -19,8 +19,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -106,7 +104,7 @@ public class DetailListFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        loadData();
+        refreshLayout.autoRefresh();//自动刷新
 
     }
 
@@ -114,9 +112,9 @@ public class DetailListFragment extends BaseFragment {
      * 下拉刷新
      */
     private void reRreshData() {
+        pageNo = 0;
         mList.clear();
         loadData();
-
     }
 
     private void loadData() {
@@ -195,8 +193,6 @@ public class DetailListFragment extends BaseFragment {
                 }else if(album.getHorImgUrl() != null){
                     Glide.with(getActivity()).load(album.getHorImgUrl()).into(itemViewHolder.albumPoster);
                 }
-
-                    System.out.println("album.getTitle========="+album.getTitle());
             }
 
 

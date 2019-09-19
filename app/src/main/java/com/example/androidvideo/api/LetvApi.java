@@ -12,6 +12,7 @@ import com.example.androidvideo.model.sohu.VideoList;
 import com.example.androidvideo.utils.OKHttpUtils;
 import com.example.androidvideo.model.Channel;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -177,9 +178,9 @@ public class LetvApi extends BaseSiteApi {
                             album.setTip(albumJson.getString("subname"));
                             JSONObject jsonImage = albumJson.getJSONObject("images");
                             //读取【400*300】字符
-//                            String imageurl = StringEscapeUtils.unescapeJava(jsonImage.getString("400*300"));
-//                            album.setHorImgUrl(imageurl);
-//                            list.add(album);
+                            String imageurl = StringEscapeUtils.unescapeJava(jsonImage.getString("400*300"));
+                            album.setHorImgUrl(imageurl);
+                            list.add(album);
                         }
                         if (list != null) {
                             if (list.size() > 0 && listener != null) {
@@ -242,9 +243,9 @@ public class LetvApi extends BaseSiteApi {
                         JSONObject albumJsonBody = albumJson.optJSONObject("body");
                         if (albumJsonBody.optJSONObject("picCollections") != null){
                             JSONObject jsonImg =  albumJsonBody.optJSONObject("picCollections");
-//                            if (!TextUtils.isEmpty(jsonImg.optString("150*200"))) {
-//                                album.setHorImgUrl(StringEscapeUtils.unescapeJava(jsonImg.optString("150*200")));
-//                            }
+                            if (!TextUtils.isEmpty(jsonImg.optString("150*200"))) {
+                                album.setHorImgUrl(StringEscapeUtils.unescapeJava(jsonImg.optString("150*200")));
+                            }
                         }
                         if (!TextUtils.isEmpty(albumJsonBody.optString("description"))) {
                             album.setAlbumDesc(albumJsonBody.optString("description"));
