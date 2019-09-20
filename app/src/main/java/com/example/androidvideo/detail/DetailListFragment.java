@@ -2,18 +2,14 @@ package com.example.androidvideo.detail;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -98,14 +94,12 @@ public class DetailListFragment extends BaseFragment {
             }
         });
 
-
     }
 
     @Override
     protected void initData() {
 
         refreshLayout.autoRefresh();//自动刷新
-
     }
 
     /**
@@ -151,10 +145,7 @@ public class DetailListFragment extends BaseFragment {
             }
         });
 
-
     }
-
-
 
     class DetailListAdapter extends RecyclerView.Adapter{
 
@@ -202,8 +193,6 @@ public class DetailListFragment extends BaseFragment {
         public int getItemCount() {
             return mAlbumList.size();
         }
-
-
 
         class ItemViewHolder extends RecyclerView.ViewHolder{
             private LinearLayout resultContainer;
