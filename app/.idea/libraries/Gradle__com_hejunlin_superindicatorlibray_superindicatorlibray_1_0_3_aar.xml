@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.hejunlin.superindicatorlibray:superindicatorlibray:1.0.3@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9a52290fda774f98111ab9a804e831e/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d9a52290fda774f98111ab9a804e831e/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c58d6f3aab80a7c979e04a39d4718140/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c58d6f3aab80a7c979e04a39d4718140/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
