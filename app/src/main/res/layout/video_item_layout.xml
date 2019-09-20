@@ -13,6 +13,7 @@
         android:textSize="14dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
-        android:background="@drawable/video_item_button_bg"/>
+        android:background="@drawable/video_item_button_bg"
+        />
 
 </LinearLayout>

@@ -64,7 +64,7 @@ public class VideoItemAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         if (currentSelectIndex == i) {
-            viewHolder.videoContainer.setBackgroundResource(R.color.colorAccent);
+            viewHolder.videoContainer.setBackgroundResource(R.color.colorPrimary);
         } else {
             viewHolder.videoContainer.setBackgroundColor(Color.TRANSPARENT);
         }

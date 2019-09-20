@@ -118,6 +118,11 @@ public class AlbumPlayGridFragment extends BaseFragment {
     }
 
     private void loadData(){
+
+        if (mAlbum.getSite().getSiteId() == 2 && mPageNo > 0){
+            return;
+        }
+
         mPageNo++;
         isLoading = true;
         SiteApi.onGetVideo(mPageSize, mPageNo, mAlbum, new OnGetVideoListener() {
