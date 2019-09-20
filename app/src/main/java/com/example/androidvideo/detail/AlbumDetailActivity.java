@@ -3,9 +3,12 @@ package com.example.androidvideo.detail;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +17,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.bumptech.glide.Glide;
 import com.example.androidvideo.R;
 import com.example.androidvideo.api.OnGetAlbumDetailListener;
+import com.example.androidvideo.api.OnGetVideoPlayUrlListener;
 import com.example.androidvideo.api.SiteApi;
 import com.example.androidvideo.base.BaseActivity;
 import com.example.androidvideo.model.Album;
 import com.example.androidvideo.model.ErrorInfo;
+import com.example.androidvideo.model.sohu.Video;
 
 public class AlbumDetailActivity extends BaseActivity {
 
@@ -30,6 +35,11 @@ public class AlbumDetailActivity extends BaseActivity {
     private TextView mMainActor;
     private TextView mAlbumDesc;
     private AlbumPlayGridFragment mFragment;
+    private int mCurrentVideoPosition;
+    private Button mSuperBitstreamButton;
+    private Button mNormalBitstreamButton;
+    private Button mHighBitstreamButton;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     public static void launch(Activity activity, Album album,int videNo, boolean isShowDesc){
         Intent intent = new Intent(activity,AlbumDetailActivity.class);
@@ -66,6 +76,10 @@ public class AlbumDetailActivity extends BaseActivity {
         mMainActor = bindViewId(R.id.tv_album_mainactor);
         mAlbumDesc = bindViewId(R.id.tv_album_desc);
 
+        mSuperBitstreamButton = bindViewId(R.id.bt_super);
+        mNormalBitstreamButton = bindViewId(R.id.bt_normal);
+        mHighBitstreamButton = bindViewId(R.id.bt_high);
+
     }
 
     @Override
@@ -81,6 +95,7 @@ public class AlbumDetailActivity extends BaseActivity {
                     @Override
                     public void run() {
                         mFragment = AlbumPlayGridFragment.newInstance(mAlbum,mIsShowDesc,0);
+                        mFragment.setOnPlayVideoSelectedListener(onPlayVideoSelectedListener);
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.fragment_container,mFragment);
                         ft.commit();
@@ -124,4 +139,64 @@ public class AlbumDetailActivity extends BaseActivity {
             mAlbumDesc.setVisibility(View.GONE);
         }
     }
+
+    private AlbumPlayGridFragment.OnPlayVideoSelectedListener onPlayVideoSelectedListener = new AlbumPlayGridFragment.OnPlayVideoSelectedListener() {
+        @Override
+        public void onPlayVideoSelected(Video video, int position) {
+            mCurrentVideoPosition = position;
+            SiteApi.onGetVideoPlayUrl(video,onGetVideoPlayUrlListener);
+        }
+    };
+
+    private OnGetVideoPlayUrlListener onGetVideoPlayUrlListener = new OnGetVideoPlayUrlListener() {
+        @Override
+        public void onGetSuperUrl(Video video, String url) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSuperBitstreamButton.setVisibility(View.VISIBLE);
+                }
+            });
+
+            mSuperBitstreamButton.setTag(R.id.key_video_url, url); //视频url
+            mSuperBitstreamButton.setTag(R.id.key_video, video);//视频info
+            mSuperBitstreamButton.setTag(R.id.key_current_video_number, mCurrentVideoPosition);//当前视频
+            mSuperBitstreamButton.setTag(R.id.key_video_stream, 1); //码流
+        }
+
+        @Override
+        public void onGetNoramlUrl(Video video, String url) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mNormalBitstreamButton.setVisibility(View.VISIBLE);
+                }
+            });
+
+            mNormalBitstreamButton.setTag(R.id.key_video_url, url); //视频url
+            mNormalBitstreamButton.setTag(R.id.key_video, video);//视频info
+            mNormalBitstreamButton.setTag(R.id.key_current_video_number, mCurrentVideoPosition);//当前视频
+            mNormalBitstreamButton.setTag(R.id.key_video_stream, 2); //码流
+        }
+
+        @Override
+        public void onGetHighUrl(Video video, String url) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mHighBitstreamButton.setVisibility(View.VISIBLE);
+                }
+            });
+
+            mHighBitstreamButton.setTag(R.id.key_video_url, url); //视频url
+            mHighBitstreamButton.setTag(R.id.key_video, video);//视频info
+            mHighBitstreamButton.setTag(R.id.key_current_video_number, mCurrentVideoPosition);//当前视频
+            mHighBitstreamButton.setTag(R.id.key_video_stream, 3); //码流
+        }
+
+        @Override
+        public void onGetFailed(ErrorInfo info) {
+
+        }
+    };
 }

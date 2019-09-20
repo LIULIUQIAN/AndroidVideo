@@ -51,10 +51,10 @@ public class SiteApi {
     public static void onGetVideoPlayUrl(Video video, OnGetVideoPlayUrlListener listener) {
         int siteId = video.getSite();
         switch (siteId) {
-            case 1:
-//                new LetvApi().onGetVideoPlayUrl(video,  listener);
-                break;
             case 2:
+                new LetvApi().onGetVideoPlayUrl(video,  listener);
+                break;
+            case 1:
                 new SohuApi().onGetVideoPlayUrl(video,   listener);
                 break;
         }

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import androidx.annotation.Nullable;
@@ -36,6 +38,15 @@ public class AlbumPlayGridFragment extends BaseFragment {
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private boolean mIsFristSelection = true;
     private boolean isLoading = false;
+    private OnPlayVideoSelectedListener onPlayVideoSelectedListener;
+
+    public void setOnPlayVideoSelectedListener(OnPlayVideoSelectedListener onPlayVideoSelectedListener) {
+        this.onPlayVideoSelectedListener = onPlayVideoSelectedListener;
+    }
+
+    public interface OnPlayVideoSelectedListener{
+        void onPlayVideoSelected(Video video, int position);
+    }
 
     public static AlbumPlayGridFragment newInstance(Album album, boolean isShowDesc, int initVideoPosition){
         AlbumPlayGridFragment fragment = new AlbumPlayGridFragment();
@@ -54,7 +65,7 @@ public class AlbumPlayGridFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        mGridView = bindViewId(R.id.gv_video_layout);
+
         if (getArguments() != null){
             mAlbum = getArguments().getParcelable(ARGS_ALBUM);
             mIsShowDesc = getArguments().getBoolean(ARGS_IS_SHOWDESC);
@@ -62,16 +73,20 @@ public class AlbumPlayGridFragment extends BaseFragment {
             mPageNo = 0;
             mPageSize = 50;
         }
-        mGridView.setNumColumns(mIsShowDesc ? 1 : 6);
-        mVideoItemAdapter = new VideoItemAdapter(getActivity(),mAlbum.getVideoTotal(),mIsShowDesc,mVideoSelectedListner);
-        mGridView.setAdapter(mVideoItemAdapter);
+        initGridView();
+
         mPageTotal = (mAlbum.getVideoTotal() + mPageSize -1)/ mPageSize;
+    }
+
+    private void initGridView(){
+        mGridView = bindViewId(R.id.gv_video_layout);
+        mGridView.setNumColumns(mIsShowDesc ? 1 : 6);
+        mVideoItemAdapter = new VideoItemAdapter(getActivity(),mAlbum.getVideoTotal(),mIsShowDesc);
+        mGridView.setAdapter(mVideoItemAdapter);
 
         mGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {
-
-            }
+            public void onScrollStateChanged(AbsListView absListView, int i) {}
 
             @Override
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
@@ -84,13 +99,22 @@ public class AlbumPlayGridFragment extends BaseFragment {
                 }
             }
         });
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mVideoItemAdapter.setCurrentSelectIndex(i);
+                if (onPlayVideoSelectedListener != null){
+                    onPlayVideoSelectedListener.onPlayVideoSelected(mVideoList.get(i),i);
+                }
+            }
+        });
+
     }
 
     @Override
     protected void initData() {
 
         loadData();
-
     }
 
     private void loadData(){
@@ -102,18 +126,16 @@ public class AlbumPlayGridFragment extends BaseFragment {
                 isLoading = false;
                 mVideoList.addAll(videoList);
                 mVideoItemAdapter.setmVideoList(mVideoList);
+                if (mPageNo == 1){
+                    if (onPlayVideoSelectedListener != null && mVideoList.size() > 0){
+                        onPlayVideoSelectedListener.onPlayVideoSelected(mVideoList.get(0),0);
+                    }
+                }
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if (mVideoItemAdapter != null){
                             mVideoItemAdapter.notifyDataSetChanged();
-                        }
-                        if (mVideoItemAdapter.getCount() > mInitPosition && mIsFristSelection){
-                            mGridView.setSelection(mInitPosition);
-                            mGridView.setItemChecked(mInitPosition,true);
-                            mIsFristSelection = false;
-                            SystemClock.sleep(100);
-                            mGridView.smoothScrollToPosition(mInitPosition);
                         }
                     }
                 });
@@ -126,15 +148,5 @@ public class AlbumPlayGridFragment extends BaseFragment {
         });
     }
 
-    private OnVideoSelectedListener mVideoSelectedListner = new OnVideoSelectedListener() {
-        @Override
-        public void onVideoSelected(Video video, int position) {
-            if (mGridView != null){
-                mGridView.setSelection(position);
-                mGridView.setItemChecked(position,true);
-
-            }
-        }
-    };
 }
 

@@ -7,9 +7,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.androidvideo.R;
 import com.example.androidvideo.model.sohu.Video;
@@ -18,19 +20,18 @@ import com.example.androidvideo.model.sohu.VideoList;
 public class VideoItemAdapter extends BaseAdapter {
 
     private Context mContext;
-    private int mTotalCount;
-    private OnVideoSelectedListener mListener;
     private VideoList mVideoList = new VideoList();
-    private boolean mIsFirst = true;
     private boolean mIsShowTitleContent;
     private int currentSelectIndex = 0;
 
-    public VideoItemAdapter(Context context, int totalCount,boolean isShow, OnVideoSelectedListener listener){
-        mContext = context;
-        mTotalCount = totalCount;
-        mListener = listener;
-        mIsShowTitleContent = isShow;
+    public void setCurrentSelectIndex(int currentSelectIndex) {
+        this.currentSelectIndex = currentSelectIndex;
+        notifyDataSetChanged();
+    }
 
+    public VideoItemAdapter(Context context, int totalCount, boolean isShow){
+        mContext = context;
+        mIsShowTitleContent = isShow;
     }
 
     @Override
@@ -78,18 +79,6 @@ public class VideoItemAdapter extends BaseAdapter {
         }else {
             viewHolder.videoTitle.setText(String.valueOf(i+1));
         }
-        if (i == 0 && mIsFirst){
-            mListener.onVideoSelected(video,i);
-            mIsFirst = false;
-        }
-        viewHolder.videoTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                currentSelectIndex = i;
-                mListener.onVideoSelected(video,i);
-            }
-        });
-
         return view;
     }
 
@@ -97,11 +86,9 @@ public class VideoItemAdapter extends BaseAdapter {
         this.mVideoList = mVideoList;
     }
 
-
     class ViewHolder{
         LinearLayout videoContainer;
-        Button videoTitle;
+        TextView videoTitle;
     }
-
 
 }
