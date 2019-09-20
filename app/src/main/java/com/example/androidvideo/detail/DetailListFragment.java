@@ -24,6 +24,7 @@ import com.example.androidvideo.api.SiteApi;
 import com.example.androidvideo.base.BaseFragment;
 import com.example.androidvideo.model.Album;
 import com.example.androidvideo.model.AlbumList;
+import com.example.androidvideo.model.Channel;
 import com.example.androidvideo.model.ErrorInfo;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 
@@ -171,7 +172,7 @@ public class DetailListFragment extends BaseFragment {
             if (mAlbumList.size() == 0){
                 return;
             }
-            Album album = mAlbumList.get(position);
+           final Album album = mAlbumList.get(position);
 
             if (holder instanceof ItemViewHolder){
                 ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
@@ -184,6 +185,17 @@ public class DetailListFragment extends BaseFragment {
                 }else if(album.getHorImgUrl() != null){
                     Glide.with(getActivity()).load(album.getHorImgUrl()).into(itemViewHolder.albumPoster);
                 }
+
+                itemViewHolder.resultContainer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mChannelId == Channel.DOCUMENTRY|| mChannelId == Channel.MOVIE || mChannelId== Channel.VARIETY || mChannelId == Channel.MUSIC) {
+                            AlbumDetailActivity.launch(getActivity(), album, 0, true);
+                        } else {
+                            AlbumDetailActivity.launch(getActivity(), album);
+                        }
+                    }
+                });
             }
 
 

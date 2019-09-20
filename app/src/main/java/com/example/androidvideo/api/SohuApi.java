@@ -97,7 +97,7 @@ public class SohuApi extends BaseSiteApi{
         if (result.getData().getResultAlbumList().size() > 0) { //说明有数据
             AlbumList albumList = new AlbumList();
             for (ResultAlbum resultAlbum : result.getData().getResultAlbumList()) {
-                Album album  = new Album(1);
+                Album album  = new Album(Site.SOHU);
                 album.setAlbumDesc(resultAlbum.getTvDesc());
                 album.setAlbumId(resultAlbum.getAlbumId());
                 album.setHorImgUrl(resultAlbum.getHorHighPic());
@@ -295,6 +295,7 @@ public class SohuApi extends BaseSiteApi{
         UUID uuid = UUID.randomUUID();
         return uuid.toString().replace("-","");
     }
+
 
     @Override
     public void onGetChannelAlbums(java.nio.channels.Channel channel, int pageNo, int pageSize, OnGetChannelAlbumListener listener) {

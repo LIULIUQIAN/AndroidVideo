@@ -39,10 +39,10 @@ public class SiteApi {
     public static void onGetVideo(int pageSize, int pageNo, Album album, OnGetVideoListener listener) {
         int siteId = album.getSite().getSiteId();
         switch (siteId) {
-            case 1:
+            case 2:
                 new LetvApi().onGetVideo(album, pageSize, pageNo, listener);
                 break;
-            case 2:
+            case 1:
                 new SohuApi().onGetVideo(album,  pageSize, pageNo, listener);
                 break;
         }
